@@ -29,10 +29,11 @@
             placeholder="Introduce contraseña">
             <div class="invalid-feedback" *ngIf="enviado && this.loginForm.controls.password.errors?.required">Tienes que rellenar este campo</div>
         </div>
-        
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        <button [disabled]="isLoading" type="submit" class="btn btn-primary">
+          <span class="spinner-border spinner-border-sm nr-1" *ngIf="isLoading"></span>
+          Iniciar Sesión
+        </button>
+        <div *ngIf="errorMsg" class="alert alert-danger mt-3 mb-0">{{errorMsg}}</div>
       </form>
 </div>
-<pre>
-    {{this.loginForm.controls | json}}
-</pre>
+

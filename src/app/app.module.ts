@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ServicesModule } from './services/services.module';
 import { InterceptorsModule } from './interceptors/interceptors.module';
 import { GuardsModule } from './guards/guards.module';
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     ComponentsModule,
     GuardsModule,
     InterceptorsModule,
-    ServicesModule
+    ServicesModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

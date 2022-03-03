@@ -22,6 +22,7 @@ export class LoginService {
   }
 
   performLogin(entrada: LoginModel): Observable<LoginModel>{
+    console.log('performLogin(' + JSON.stringify(entrada) + ')');
     return this.http.post<LoginModel>(environment.login, entrada).pipe(map(retornoApi => {
 
       console.log('login OK: ' + JSON.stringify(retornoApi));
