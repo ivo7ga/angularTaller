@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LoginModel } from './../../model/login.model';
 import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   errorMsg!: string | null;
   isLoading: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) { 
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService,private router: Router) { 
     this.loginForm = this.formBuilder.group({
       username: ['',[Validators.required, Validators.email]],
       password: ['',Validators.required]
@@ -34,12 +35,13 @@ export class LoginComponent implements OnInit {
     return;
 
     let loginModel: LoginModel = new LoginModel(this.loginForm.controls.username.value, this.loginForm.controls.password.value, '')
-//comienzo llamada
-this.isLoading = true
+    //comienzo llamada
+    this.isLoading = true
     this.loginService.
     performLogin(loginModel)
     .subscribe(respuesta => {
       console.log(JSON.stringify(respuesta));
+      this.router.navigate(['home']);
       this.isLoading = false
       this.errorMsg = null
     }, error => {
